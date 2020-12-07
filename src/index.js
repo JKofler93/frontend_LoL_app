@@ -1,47 +1,45 @@
 // DOM ELEMENTS 
 const championCard = document.querySelector(".card")
-const form = document.querySelector(".sign-in") 
+const form = document.querySelector(".sign-in")
 // console.log(form)
 
 // EVENT LISTENER
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-const userName = form[0].value
-console.log(userName)
-fetch(`http://localhost:3000/users`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        user_name: userName
-    }),
-})
-    .then(resp => resp.json())
-    .then(updatedData => {
-        console.log("Success", updatedData)
+    const userName = form[0].value
+    console.log(userName)
+    fetch(`http://localhost:3000/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            user_name: userName
+        })
     })
+        .then(resp => resp.json())
+        .then(updatedData => {
+            console.log("Success", updatedData)
+        })
 
-   
-})  
+
+})
 
 
 
 // POST Sign in 
-console.log("before init")
+
 // FETCH FUNCTION
-let champ 
+let champ
 function initialize() {
     fetch(`http://localhost:3000/champions`)
         .then(resp => resp.json())
         .then(championObj => {
-            champ = championObj
-            console.log(champ, "inside fetch")
             renderChampionObject(championObj)
         })
 }
 initialize()
-console.log(champ, "after init")
 
 
 
