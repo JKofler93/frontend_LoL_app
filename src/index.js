@@ -5,7 +5,7 @@ const form = document.querySelector(".sign-in")
 
 // EVENT LISTENER
 form.addEventListener("submit", (e) => {
-    preventDefault()
+    e.preventDefault()
 const userName = form[0].value
 console.log(userName)
 fetch(`http://localhost:3000/users`, {
@@ -28,19 +28,20 @@ fetch(`http://localhost:3000/users`, {
 
 
 // POST Sign in 
-
+console.log("before init")
 // FETCH FUNCTION
-
-let globalVariableName
+let champ 
 function initialize() {
     fetch(`http://localhost:3000/champions`)
         .then(resp => resp.json())
         .then(championObj => {
-            // console.log(championObj)
+            champ = championObj
+            console.log(champ, "inside fetch")
             renderChampionObject(championObj)
         })
 }
 initialize()
+console.log(champ, "after init")
 
 
 
