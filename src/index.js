@@ -1,11 +1,33 @@
 // DOM ELEMENTS 
 const championCard = document.querySelector(".card")
-console.log(championCard)
+const form = document.querySelector(".sign-in") 
+// console.log(form)
+
+// EVENT LISTENER
+form.addEventListener("submit", (e) => {
+    preventDefault()
+const userName = form[0].value
+console.log(userName)
+fetch(`http://localhost:3000/users`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        user_name: userName
+    }),
+})
+    .then(resp => resp.json())
+    .then(updatedData => {
+        console.log("Success", updatedData)
+    })
+
+   
+})  
 
 
 
-
-
+// POST Sign in 
 
 // FETCH FUNCTION
 
@@ -14,7 +36,7 @@ function initialize() {
     fetch(`http://localhost:3000/champions`)
         .then(resp => resp.json())
         .then(championObj => {
-            console.log(championObj)
+            // console.log(championObj)
             renderChampionObject(championObj)
         })
 }
@@ -33,11 +55,12 @@ function renderChampionObject(championObj) {
         <img src="${champion.image}">
             <h2>${champion.name}</h2>
             <p>${champion.bio}</p>
+            <ul>Comments</ul>
         </div>
         `
 
         championCard.append(newDiv)
-        console.log(champion)
+        // console.log(champion)
     })
 }
 
