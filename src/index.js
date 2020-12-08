@@ -53,7 +53,6 @@ function renderChampionObject(championObj) {
         <img src="${champion.image}">
             <h2>${champion.name}</h2>
             <p>${champion.bio}</p>
-            <ul>Comments</ul>
         </div>
         `
 
