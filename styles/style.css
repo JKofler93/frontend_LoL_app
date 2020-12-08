@@ -69,6 +69,11 @@ img {
   height: auto;
   border-radius: 10px;
 }
-p{
+
+p {
+  color: white;
+}
+
+h2 {
   color: white;
 }
