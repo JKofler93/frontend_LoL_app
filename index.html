@@ -3,19 +3,31 @@
 <head>
     <title>LoL App</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
 </head>
 <body>
 <div class="navtop">
-<form class="sign-in"> 
-<label for="username">Username:</label>
-<input type="text" placeholder="Enter Username" name="username">
+    <ul id="nav">
+        <form class="sign-in"> 
+            <li><label for="username">Username:</label></li>
+            <li><input type="text" placeholder="Enter Username" name="username"></li>
 
-<label for="Password">Password:</label>
-<input type="password" placeholder="Enter Password" name="password">
+            <li><label for="Password">Password:</label></li>
+            <li><input type="password" placeholder="Enter Password" name="password"></li>
 
-<button type="submit">Sign-Up</button>
-</form>
+            <button type="submit">Sign-Up</button>
+        </form>
+    </ul>
 </div>
+
+
+
+
+<div id="logo">
+    <img id="lol" src="https://purepng.com/public/uploads/large/league-of-legends-new-logo-wg7.png">
+</div>
+
 <div class="username-greeting">
     <!-- set up javascript to put value of form[0] to display "Hi, ${Username}" -->
 </div>

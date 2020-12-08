@@ -1,10 +1,56 @@
 body {
-  background-color: #90d5ec;
-  background-image: linear-gradient(315deg, #90d5ec 0%);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  /* background-color: #fce043;
+  background-image: linear-gradient(315deg, #fce043 0%, #fb7ba2 74%); */
+  background-image: url("https://cutewallpaper.org/21/star-guardian-poppy-wallpaper/Star-Guardian-Pattern-by-Marlon-Jones-on-Dribbble.png");
 }
 
- .champion-card { 
+
+
+ 
+.navtop{
+  background-color: #485461;
+background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  height: 50px;
+  
+}
+
+#nav{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  width:100%;
+}
+
+li{
+  display: inline;
+}
+
+.sign-in {
+  float: right;
+} 
+
+
+/*
+
+
+*/
+#logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#lol {
+    width: 40%;
+    height: 40%;
+}
+
+.champion-card { 
   background-color: gray;
+  background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/f8d3d387115887.5dae6de65de34.jpg");
   justify-content: space-evenly;
   flex-basis: auto;
   flex-direction: row;
@@ -18,20 +64,8 @@ body {
   border-radius: 10px;
   margin: 30px;
 }
-
- img {
+img {
   width: 90%;
   height: auto;
   border-radius: 10px;
 }
-
-.sign-in {
-  float: right;
-}
-
-.navtop {
-  background-color: gray;
-  overflow: visible;
-  padding: 25px;
-}
-
