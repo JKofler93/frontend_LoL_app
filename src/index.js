@@ -7,7 +7,7 @@ const form = document.querySelector(".sign-in")
 form.addEventListener("submit", (e) => {
     e.preventDefault()
     const userName = form[0].value
-    console.log(userName)
+    // console.log(userName)
     fetch(`http://localhost:3000/users`, {
         method: "POST",
         headers: {
@@ -41,6 +41,17 @@ function initialize() {
 initialize()
 
 
+function fetchComments() {
+    fetch(`http://localhost:3000/comments`)
+        .then(resp => resp.json())
+        .then(commentObj => {
+            // console.log(commentObj)
+            renderComments(commentObj)
+        })
+}
+fetchComments()
+
+
 
 
 // RENDER FUNCTION 
@@ -53,6 +64,15 @@ function renderChampionObject(championObj) {
         <img src="${champion.image}">
             <h2>${champion.name}</h2>
             <p>${champion.bio}</p>
+            <h2>Comments</h2>
+            <br>
+            <ul id="${champion.id}-comment"> 
+            </ul>
+            <form data-name=${champion.name} data-bio=${champion.bio} data-id=${champion.id} data-image=${champion.image} class="comment-form" id="${champion.id}-submit">
+                <input type="textarea" name="comment" style="height:25px">
+                <br>
+                <input class="submit-button" type="submit" style="margin:10px">
+            </form>
         </div>
         `
 
@@ -60,9 +80,52 @@ function renderChampionObject(championObj) {
         // console.log(champion)
     })
 }
+function addComment() {
+    
+    championCard.addEventListener("submit", (e) => {
+        e.preventDefault()
+        let comment = e.target.comment.value
+        let id = e.target.dataset.id
+        // let name = e.target.dataset.name
+        // let image = e.target.dataset.image
+        // let bio = e.target.dataset.bio
+   	const commentObj = {
+           comment: comment,
+           user: 1,
+           champion: id
+   }
+       fetch("http://localhost:3000/comments", {
+           method: 'POST',
+           headers: {
+                "Content-Type": "application/json"
+   },
+           body: JSON.stringify(commentObj),
+   })
+           .then(response => response.json())
+           .then(newObj => {
+           console.log("Success:", newObj)
+   });
+        
+        
+    })
+}
+addComment()
 
 
 
+
+function renderComments(commentObj) {
+   
+    commentObj.forEach(comment => {
+        const selected = document.getElementById(`${comment.champion.id}-comment`)
+        const li = document.createElement('li')
+        li.textContent = comment.comment
+        // debugger
+        selected.append(li)
+
+   })
+
+}
 
 
 
