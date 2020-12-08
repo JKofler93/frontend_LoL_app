@@ -46,7 +46,7 @@ function fetchComments() {
         .then(resp => resp.json())
         .then(commentObj => {
             // console.log(commentObj)
-            renderComments(commentObj)
+            // renderComments(commentObj)
         })
 }
 fetchComments()
@@ -66,13 +66,13 @@ function renderChampionObject(championObj) {
             <p>${champion.bio}</p>
             <h2>Comments</h2>
             <br>
-            <ul id="${champion.id}-comment"> 
-            </ul>
+            <ul data-id="${champion.id}"> 
             <form data-name=${champion.name} data-bio=${champion.bio} data-id=${champion.id} data-image=${champion.image} class="comment-form" id="${champion.id}-submit">
                 <input type="textarea" name="comment" style="height:25px">
                 <br>
                 <input class="submit-button" type="submit" style="margin:10px">
             </form>
+            </ul>
         </div>
         `
 
@@ -86,13 +86,15 @@ function addComment() {
         e.preventDefault()
         let comment = e.target.comment.value
         let id = e.target.dataset.id
+        const ul = e.target.closest("ul")
+        console.log(ul)
         // let name = e.target.dataset.name
         // let image = e.target.dataset.image
         // let bio = e.target.dataset.bio
    	const commentObj = {
            comment: comment,
-           user: 1,
-           champion: id
+           user_id: 23,
+           champion_id: id
    }
        fetch("http://localhost:3000/comments", {
            method: 'POST',
@@ -103,6 +105,9 @@ function addComment() {
    })
            .then(response => response.json())
            .then(newObj => {
+               let li = document.createElement('li')
+               li.textContent = comment
+               ul.append(li)
            console.log("Success:", newObj)
    });
         
@@ -114,18 +119,18 @@ addComment()
 
 
 
-function renderComments(commentObj) {
+// function renderComments(commentObj) {
    
-    commentObj.forEach(comment => {
-        const selected = document.getElementById(`${comment.champion.id}-comment`)
-        const li = document.createElement('li')
-        li.textContent = comment.comment
-        // debugger
-        selected.append(li)
+//     commentObj.forEach(comment => {
+//         const selected = document.getElementById(`${comment.champion.id}-comment`)
+//         const li = document.createElement('li')
+//         li.textContent = comment.comment
+//         // debugger
+//         selected.append(li)
 
-   })
+//    })
 
-}
+// }
 
 
 
