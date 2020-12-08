@@ -31,7 +31,6 @@ form.addEventListener("submit", (e) => {
 // POST Sign in 
 
 // FETCH FUNCTION
-let champ
 function initialize() {
     fetch(`http://localhost:3000/champions`)
         .then(resp => resp.json())
